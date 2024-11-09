@@ -9,7 +9,7 @@ abstract contract ERC1271 {
     ///      The original hash must either be:
     ///         - An EIP-191 hash: keccak256("\x19Ethereum Signed Message:\n" || len(someMessage) || someMessage)
     ///         - An EIP-712 hash: keccak256("\x19\x01" || someDomainSeparator || hashStruct(someStruct))
-    bytes32 internal constant _MESSAGE_TYPEHASH = keccak256("YkSmartWalletMessage(bytes32 hash)");
+    bytes32 private constant _MESSAGE_TYPEHASH = keccak256("YkSmartWalletMessage(bytes32 hash)");
 
     /// @notice Returns information about the `EIP712Domain` used to create EIP-712 compliant hashes.
     ///

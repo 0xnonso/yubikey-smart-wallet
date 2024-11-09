@@ -48,7 +48,7 @@ contract Wallet is ERC1271, BaseAccount, CustomSlotInitializable, MultiSignable,
     modifier onlyAuthorized(bytes memory data, bytes memory _proof) virtual {
         if(msg.sender != address(entryPoint()) || msg.sender != address(this)){
             bytes32 dataHash = keccak256(abi.encode(keccak256(data), block.chainid, nonce()));
-            bytes32 msgHash = sha256(abi.encode(keccak256(abi.encode(_MESSAGE_TYPEHASH, dataHash))));
+            bytes32 msgHash = sha256(abi.encode(_hashStruct(dataHash)));
             _incrementNonce();
 
             require(

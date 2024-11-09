@@ -48,7 +48,7 @@ contract Wallet2 is ERC1271, BaseAccount, CustomSlotInitializable, MultiSignable
 
     modifier onlyAuthorized(bytes memory data, bytes memory signature) virtual {
         if(msg.sender != address(entryPoint()) || msg.sender != address(this)){
-            bytes32 msgHash = keccak256(abi.encode(_MESSAGE_TYPEHASH, keccak256(abi.encode(keccak256(data), block.chainid, nonce()))));
+            bytes32 msgHash = _hashStruct(keccak256(abi.encode(keccak256(data), block.chainid, nonce())));
             _incrementNonce();
             bytes memory signerBytes = signerAtIndex(0);
 
