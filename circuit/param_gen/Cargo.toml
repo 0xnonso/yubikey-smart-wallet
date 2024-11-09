@@ -1,0 +1,15 @@
+[package]
+name = "param_gen"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rsa = { version = "0.9.6", features = ["sha2"] }
+noir-bignum-paramgen = { version = "0.1.2" }
+num-bigint = { version = "0.8.2", features = ["i128", "prime", "zeroize"], default-features = false, package = "num-bigint-dig" }
+p256 = "0.13.2"
+sha2 = "0.10"
+clap = "4.5.20"
+hex = "0.4" 

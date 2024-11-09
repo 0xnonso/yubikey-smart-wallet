@@ -1,0 +1,8 @@
+[package]
+name = "rsa_sig_verifier"
+type = "bin"
+authors = [""]
+compiler_version = ">=0.34.0"
+
+[dependencies]
+yk_verify = { path =  "../yk_verify"}

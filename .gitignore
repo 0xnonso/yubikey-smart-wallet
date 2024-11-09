@@ -1,6 +1,7 @@
 # Compiler files
 cache/
 out/
+target/
 
 # Ignores development broadcast logs
 !/broadcast
@@ -12,3 +13,17 @@ docs/
 
 # Dotenv file
 .env
+
+.vscode
+.github
+-b/
+
+.DS_Store
+*.der
+*.pem
+*.bin
+*.asc
+*.txt
+*.sig
+*.hex
+*.b64
