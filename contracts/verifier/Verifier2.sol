@@ -8,8 +8,6 @@ import {IVerifier2} from "../interfaces/IVerifier2.sol";
 import {AttestationProofInputs} from "../libraries/StructInputs.sol";
 
 contract Verifier2 is IVerifier2 {
-    // uint256 public constant RSA_EXPONENT = 65537;
-    // bytes public constant RSA_EXPONENT = hex'010001';
 
     RSA2048AttestationVerifier public immutable rsa2048AttestationVerifier;
 

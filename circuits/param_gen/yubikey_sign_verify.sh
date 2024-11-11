@@ -16,7 +16,7 @@ DATA=$3
 echo $DATA > data.txt
 
 # Sign the file using YubiKey, the specified slot, and the specified algorithm
-yubico-piv-tool -a verify-pin --sign -s "$SLOT" -A "$ALGO" -i <(cat $DATA | xxd -r -p) -o data.sig
+yubico-piv-tool -a verify-pin --sign -s "$SLOT" -A "$ALGO" -i <(cat data.txt | xxd -r -p) -o data.sig
 
 if [ $? -eq 0 ]; then
     echo "File successfully signed. Signature saved to data.sig"
