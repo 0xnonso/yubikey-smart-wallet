@@ -1,4 +1,4 @@
-generate parameters:
+to generate parameters:
 ```markdown
 cd param_gen && cargo build
 ```
