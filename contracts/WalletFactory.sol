@@ -8,7 +8,8 @@ import {
     AttestationProofInputs
 } from "./libraries/StructInputs.sol";
 
-/// @author Coinbase (https://github.com/coinbase/smart-wallet/blob/main/src/CoinbaseSmartWalletFactory.sol)
+/// @author Coinbase (https://github.com/coinbase/smart-wallet)
+/// modified from (https://github.com/coinbase/smart-wallet/blob/main/src/CoinbaseSmartWalletFactory.sol)
 contract WalletFactory {
 
     IVerifier public immutable VERIFIER;

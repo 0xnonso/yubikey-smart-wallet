@@ -10,6 +10,7 @@ import {
 import {Test, console} from "forge-std/Test.sol";
 
 /// @author Coinbase (https://github.com/coinbase/smart-wallet/blob/main/src/CoinbaseSmartWalletFactory.sol)
+/// modified from (https://github.com/coinbase/smart-wallet/blob/main/src/CoinbaseSmartWalletFactory.sol)
 contract WalletFactory2 {
 
     IVerifier2 public immutable VERIFIER;
