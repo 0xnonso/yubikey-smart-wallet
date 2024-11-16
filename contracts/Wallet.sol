@@ -75,8 +75,8 @@ contract Wallet is ERC1271, IAccount, CustomSlotInitializable, MultiSignable, UU
         _;
     }
 
-    /// @notice Reverts if the caller is neither the EntryPoint, the yubikey, nor the account itself.
-    /// @dev If called directly, verifies signature proof `_proof` to prove `data` was signed by yubikey.
+    /// @notice Reverts if the caller is neither the EntryPoint, the yubikey public key, nor the account itself.
+    /// @dev If called directly, the signature proof `_proof` has to be provided.
     modifier onlyAuthorized(bytes memory data, bytes memory _proof) virtual {
         if(msg.sender != address(entryPoint()) || msg.sender != address(this)){
             bytes32 dataHash = keccak256(abi.encode(keccak256(data), block.chainid, nonce()));
@@ -119,9 +119,9 @@ contract Wallet is ERC1271, IAccount, CustomSlotInitializable, MultiSignable, UU
     /// @notice Initializes this account.
     ///
     /// @param sigType Yubikey signing key algorithm. i.e RSA2048 or ECCP256(secp256r1).
-    /// @param _pubKeyHash Hash(SHA256) of the yubikey signing key.
-    /// @param signers Initial account signers alongside the yubikey signing key.
-    /// @param signerExpiries Timestamp when initial account signers become invalid(can no longer sign txs).
+    /// @param _pubKeyHash Hash(SHA256) of the yubikey public key.
+    /// @param signers Initial account signers alongside the yubikey public key.
+    /// @param signerExpiries Timestamp when initial account signers become invalid(can no longer sign valid txs).
     function initialize(
         SignatureType sigType, 
         bytes32 _pubKeyHash, 
@@ -137,7 +137,7 @@ contract Wallet is ERC1271, IAccount, CustomSlotInitializable, MultiSignable, UU
     /// @dev `proof` is only required when invoking the function directly.
     ///
     /// @param data Tx calldata to execute.
-    /// @param proof Signature proof to prove `data` was signed by yubikey.
+    /// @param proof Signature proof to prove `data` was signed by yubikey key.
     function execute(bytes calldata data, bytes calldata proof) external virtual onlyAuthorized(data, proof){
         (Call[] memory calls) = abi.decode(data, (Call[]));
         _executeCalls(calls);

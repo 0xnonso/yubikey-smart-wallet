@@ -1,5 +1,5 @@
 # yubikey-smart-wallet
-prove you own a key pair generated from a yubikey and generate a smart wallet account for it. currently supports ECCP256(secp256r1) and RSA2048 keys.
+prove that you own a key pair generated from a Yubikey and generate a smart wallet account associated with it. currently, ECC P-256 (secp256r1) and RSA 2048-bit keys are supported.
 
 initial setup to install tools and deps:
 ```markdown

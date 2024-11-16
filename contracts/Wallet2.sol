@@ -33,8 +33,8 @@ contract Wallet2 is ERC1271, IAccount, CustomSlotInitializable, MultiSignable2, 
         /// @dev The index of the signer, see `MultiOwnable.ownerAtIndex`
         uint256 ownerIndex;
         /// @dev If `MultiOwnable.ownerAtIndex` is an Ethereum address, this should be `abi.encodePacked(r, s, v)`
-        /// @dev If `MultiOwnable.ownerAtIndex` is a Yubikey P256 public key, this should be `abi.encodePacked(r, s)`
-        /// @dev If `MultiOwnable.ownerAtIndex` is a Yubikey RSA2048 public key, this should be `abi.encodePacked(s)`
+        /// @dev If `MultiOwnable.ownerAtIndex` is a P256 public key, this should be `abi.encodePacked(r, s)`
+        /// @dev If `MultiOwnable.ownerAtIndex` is a RSA2048 public key, this should be `abi.encodePacked(s)`
         bytes signatureData;
     }
 
@@ -71,8 +71,8 @@ contract Wallet2 is ERC1271, IAccount, CustomSlotInitializable, MultiSignable2, 
         _;
     }
 
-    /// @notice Reverts if the caller is neither the EntryPoint, the yubikey, nor the account itself.
-    /// @dev If called directly, verifies yubikey's `data` `signature`.
+    /// @notice Reverts if the caller is neither the EntryPoint, the yubikey public key, nor the account itself.
+    /// @dev If called directly, `signature` has to be provided.
     modifier onlyAuthorized(bytes memory data, bytes memory signature) virtual {
         if(msg.sender != address(entryPoint()) || msg.sender != address(this)){
             bytes32 msgHash = _hashStruct(keccak256(abi.encode(keccak256(data), block.chainid, nonce())));
